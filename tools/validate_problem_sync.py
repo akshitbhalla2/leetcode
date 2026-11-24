@@ -98,6 +98,31 @@ def validate_unique_links():
     return errors
 
 
+def validate_unique_folder_names():
+    paths = git_output("ls-files", "-z").split("\0")
+    paths.extend(
+        git_output("ls-files", "--others", "--exclude-standard", "-z").split("\0")
+    )
+    names = {
+        path.split("/", 1)[0]
+        for path in paths
+        if path and PROBLEM_FOLDER.match(path.split("/", 1)[0])
+    }
+
+    errors = []
+    seen = {}
+    for name in sorted(names):
+        key = name.casefold()
+        previous = seen.get(key)
+        if previous and previous != name:
+            errors.append(
+                f"{name}: case-insensitive duplicate of problem folder {previous}"
+            )
+        else:
+            seen[key] = name
+    return errors
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Validate changed LeetCode problem folders and problem references."
@@ -123,6 +148,7 @@ def main():
     for folder in folders_to_validate:
         errors.extend(validate_problem_folder(folder))
     errors.extend(validate_unique_links())
+    errors.extend(validate_unique_folder_names())
 
     if errors:
         print("\n".join(errors), file=sys.stderr)
