@@ -1,0 +1,28 @@
+name: Validate problem sync
+
+on:
+  push:
+    paths:
+      - "**/*.py"
+      - "**/*.sql"
+      - "**/README.md"
+  pull_request:
+    paths:
+      - "**/*.py"
+      - "**/*.sql"
+      - "**/README.md"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate changed problem folders
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: python tools/validate_problem_sync.py --base "$BASE_SHA"
