@@ -1,34 +1,34 @@
-# Last updated: 11/15/2026, 5:21:15 PM
-# from collections import deque
-
-# class deque:
-#     def __init__(self, array):
-#         self.array = array
-#         self.head = array[0]
-#         self.tail = array[-1]
-
-#     def __
-
 class Solution:
-    def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
+    def countStudents(self, students: list[int], sandwiches: list[int]) -> int:
 
-        size = len(students)
+        # size = len(sandwiches)
 
-        # students = deque(students)
-        # sandwiches = deque(sandwiches)
+        # for i in range(size):
+        #     sandwich = sandwiches[i]
+        #     for j in range(size-i):
+        #         student = students.pop(0)
+        #         if sandwich == student:
+        #             break
+        #         students.append(student)
+        #     else:
+        #         return size - i
+
+        # return 0 
+
+        size = len(sandwiches)
 
         count = 0
-        while students:
+        while True:
 
-            if students[0] == sandwiches[0]:
-                students.pop(0)
+            if sandwiches[0] == students[0]:
                 sandwiches.pop(0)
+                students.pop(0)
                 count = 0
             
             else:
                 students.append(students.pop(0))
                 count += 1
-
+            
             if count == len(students):
                 break
 
