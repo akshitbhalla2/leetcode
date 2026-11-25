@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROBLEM_FOLDER = re.compile(r"^(\d+)-(.+)$")
+PLACEHOLDER_FOLDER = re.compile(r"^problem-\d+$", re.IGNORECASE)
 HEADING = re.compile(r"^#\s+(\d+)\.\s+(.+?)\s*$", re.MULTILINE)
 PROBLEM_URL = re.compile(
     r"https?://leetcode\.com/problems/([a-z0-9-]+)/?", re.IGNORECASE
@@ -106,12 +107,19 @@ def validate_unique_folder_names():
     names = {
         path.split("/", 1)[0]
         for path in paths
-        if path and PROBLEM_FOLDER.match(path.split("/", 1)[0])
+        if path
     }
 
     errors = []
-    seen = {}
     for name in sorted(names):
+        if PLACEHOLDER_FOLDER.match(name):
+            errors.append(
+                f"{name}: placeholder problem folder; use the numeric LeetCode ID and title"
+            )
+
+    problem_names = {name for name in names if PROBLEM_FOLDER.match(name)}
+    seen = {}
+    for name in sorted(problem_names):
         key = name.casefold()
         previous = seen.get(key)
         if previous and previous != name:
