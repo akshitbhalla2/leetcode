@@ -1,4 +1,5 @@
 import argparse
+from datetime import datetime
 import re
 import subprocess
 import sys
@@ -12,6 +13,11 @@ HEADING = re.compile(r"^#\s+(\d+)\.\s+(.+?)\s*$", re.MULTILINE)
 PROBLEM_URL = re.compile(
     r"https?://leetcode\.com/problems/([a-z0-9-]+)/?", re.IGNORECASE
 )
+UPDATED_AT = re.compile(
+    r"Last updated:\s*(\d{1,2}/\d{1,2}/\d{4}),\s*(\d{1,2}:\d{2}:\d{2}\s*[AP]M)",
+    re.IGNORECASE,
+)
+TIMESTAMPED_FILENAME = re.compile(r"_(\d{8}_\d{6})\.[^.]+$")
 
 
 def git_output(*args):
@@ -49,6 +55,7 @@ def validate_problem_folder(folder):
     if not readme.is_file():
         return [f"{folder.name}: missing README.md with a problem reference"]
 
+    errors.extend(validate_latest_solution_is_primary(folder))
     content = readme.read_text(encoding="utf-8")
     heading = HEADING.search(content)
     if not heading:
@@ -74,6 +81,55 @@ def validate_problem_folder(folder):
         if title_slug != problem_url.group(1).lower():
             errors.append(
                 f"{folder.name}: LeetCode link does not match the README problem title"
+            )
+    return errors
+
+
+def solution_timestamp(path):
+    content = path.read_text(encoding="utf-8")
+    updated = UPDATED_AT.search(content)
+    if updated:
+        return datetime.strptime(
+            " ".join(updated.groups()), "%m/%d/%Y %I:%M:%S %p"
+        )
+
+    filename_timestamp = TIMESTAMPED_FILENAME.search(path.name)
+    if filename_timestamp:
+        return datetime.strptime(filename_timestamp.group(1), "%Y%m%d_%H%M%S")
+    return None
+
+
+def validate_latest_solution_is_primary(folder):
+    version_dir = folder / "version"
+    if not version_dir.is_dir():
+        return []
+
+    errors = []
+    root_solutions = [
+        path
+        for path in folder.iterdir()
+        if path.is_file() and path.suffix.lower() in {".py", ".sql"}
+    ]
+    for root_solution in root_solutions:
+        archived = [
+            path
+            for path in version_dir.rglob("*")
+            if path.is_file() and path.suffix.lower() == root_solution.suffix.lower()
+        ]
+        dated_archived = [
+            (solution_timestamp(path), path)
+            for path in archived
+            if solution_timestamp(path) is not None
+        ]
+        if not dated_archived:
+            continue
+
+        latest_timestamp, latest_path = max(dated_archived, key=lambda item: item[0])
+        root_timestamp = solution_timestamp(root_solution)
+        if root_timestamp is None or latest_timestamp > root_timestamp:
+            errors.append(
+                f"{folder.name}: promote newer {latest_path.relative_to(folder)} "
+                f"over {root_solution.name}"
             )
     return errors
 

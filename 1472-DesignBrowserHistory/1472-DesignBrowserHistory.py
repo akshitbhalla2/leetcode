@@ -1,41 +1,37 @@
-# Last updated: 11/15/2026, 5:21:23 PM
+# Last updated: 11/23/2026, 1:19:05 AM
 class ListNode:
-    def __init__(self, url, prev=None, next=None):
-        self.url = url
-        self.prev = prev
-        self.next = next
+    def __init__(self, val, prv=None, nxt=None):
+        self.val = val
+        self.prv = prv
+        self.nxt = nxt
 
 class BrowserHistory:
 
     def __init__(self, homepage: str):
-        node = ListNode(homepage, None, None)
-        self.cur = node
+        self.cur = ListNode(val=homepage, prv=None, nxt=None)
 
     def visit(self, url: str) -> None:
-        node = ListNode(url, self.cur, None)
-        self.cur.next = node
+        node = ListNode(val=url, prv=self.cur, nxt=None)
+        self.cur.nxt = node
         self.cur = node
 
     def back(self, steps: int) -> str:
-
         for _ in range(steps):
-            prev = self.cur.prev
-            if not prev:
+            if self.cur.prv:
+                self.cur = self.cur.prv
+            else:
                 break
-            self.cur = prev
-        
-        return self.cur.url
+
+        return self.cur.val
 
     def forward(self, steps: int) -> str:
-
         for _ in range(steps):
-            next = self.cur.next
-            if not next:
+            if self.cur.nxt:
+                self.cur = self.cur.nxt
+            else:
                 break
-            self.cur = next
 
-        return self.cur.url
-        
+        return self.cur.val
 
 
 # Your BrowserHistory object will be instantiated and called as such:

@@ -1,9 +1,6 @@
-# Last updated: 4/19/2026, 11:23:51 PM
+# Last updated: 11/16/2026, 12:02:39 AM
 class Solution:
     def climbStairs(self, n: int) -> int:
-
-        if n < 1:
-            return 0
 
         if n == 1:
             return 1
@@ -11,11 +8,10 @@ class Solution:
         if n == 2:
             return 2
 
-        n1 = 1
-        n2 = 2
-        for _ in range(2, n):
-            total = n1 + n2
-            n1 = n2
-            n2 = total 
-        
-        return total
+        nums = [0] * n
+        nums[0] = 1
+        nums[1] = 2
+        for i in range(2, n):
+            nums[i] = nums[i-1] + nums[i-2]
+
+        return nums[-1]

@@ -2,10 +2,10 @@
 
 Use one top-level folder per LeetCode problem, named with its official problem
 number and title (for example, `1299-ReplaceElementsWithGreatestElementOnRightSide`).
-Keep alternate submissions in that problem's `version/` folder instead of
-creating another top-level folder for the same problem. Timestamp-based
-`problem-<number>` folders are placeholders and must be resolved to a real
-problem before syncing.
+Keep the latest solution for each language at the problem-folder root and move
+older attempts into that problem's `version/` folder. Do not create another
+top-level folder for the same problem. Timestamp-based `problem-<number>`
+folders are placeholders and must be resolved to a real problem before syncing.
 
 Each problem folder should have a `README.md` with the matching numbered title,
 the canonical LeetCode problem link, and a concise original summary. Use the
