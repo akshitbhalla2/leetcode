@@ -1,28 +1,22 @@
-# Last updated: 11/15/2026, 5:21:58 PM
+# Last updated: 11/27/2026, 3:38:38 AM
 import math
 
 class Solution:
-    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+    def minEatingSpeed(self, piles: list[int], h: int) -> int:
+        lt = 1
+        rt = max(piles)
 
-        def cocoFinish(piles, h, k):
-            
-            hours = 0
+        while lt <= rt:
+            mid = (lt + rt) // 2
+
+            total = 0
             for pile in piles:
-                hours += math.ceil(pile / k) 
-            
-            return hours <= h
+                total += math.ceil(pile / mid)
 
-        left, right = 0, max(piles) - 1
-
-        while left < right:
-
-            mid = (left + right) // 2
-            k = mid + 1
-
-            if cocoFinish(piles, h, k):
-                right = mid 
+            if total <= h:
+                rt = mid - 1
             else:
-                left = mid + 1 
+                lt = mid + 1
 
-        return left + 1
+        return lt
         
