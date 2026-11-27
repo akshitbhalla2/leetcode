@@ -18,6 +18,7 @@ UPDATED_AT = re.compile(
     re.IGNORECASE,
 )
 TIMESTAMPED_FILENAME = re.compile(r"_(\d{8}_\d{6})\.[^.]+$")
+NUMBERED_SOURCE_LINE = re.compile(r"^\d+")
 
 
 def git_output(*args):
@@ -46,6 +47,16 @@ def normalized(value):
 
 def validate_problem_folder(folder):
     errors = []
+    for source in folder.rglob("*.py"):
+        for line_number, line in enumerate(
+            source.read_text(encoding="utf-8").splitlines(), start=1
+        ):
+            if NUMBERED_SOURCE_LINE.match(line):
+                errors.append(
+                    f"{source.relative_to(folder)}:{line_number}: "
+                    "remove the literal line-number prefix"
+                )
+
     folder_match = PROBLEM_FOLDER.match(folder.name)
     if not folder_match:
         return errors
