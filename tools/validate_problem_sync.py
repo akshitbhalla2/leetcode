@@ -145,11 +145,28 @@ def validate_latest_solution_is_primary(folder):
         for path in folder.iterdir()
         if path.is_file() and path.suffix.lower() in {".py", ".sql"}
     ]
+    archived_solutions = [
+        path
+        for path in version_dir.rglob("*")
+        if path.is_file() and path.suffix.lower() in {".py", ".sql"}
+    ]
+    root_extensions = {path.suffix.lower() for path in root_solutions}
+    for extension in sorted(
+        {path.suffix.lower() for path in archived_solutions} - root_extensions
+    ):
+        archived = next(
+            path for path in archived_solutions if path.suffix.lower() == extension
+        )
+        errors.append(
+            f"{folder.name}: missing top-level {extension} solution for "
+            f"archived {archived.relative_to(folder)}"
+        )
+
     for root_solution in root_solutions:
         archived = [
             path
-            for path in version_dir.rglob("*")
-            if path.is_file() and path.suffix.lower() == root_solution.suffix.lower()
+            for path in archived_solutions
+            if path.suffix.lower() == root_solution.suffix.lower()
         ]
         dated_archived = [
             (solution_timestamp(path), path)
