@@ -5,20 +5,14 @@ class Solution:
         Do not return anything, modify nums1 in-place instead.
         """
 
-        if not nums1:
-            return nums2
-
-        if not nums2:
-            return nums1
-
         lt, rt = m - 1, n - 1
         for cr in range(m + n - 1, -1, -1):
-            if rt < 0:
-                break
+            a = nums1[lt] if lt >= 0 else -float("inf")
+            b = nums2[rt] if rt >= 0 else -float("inf")
 
-            if (lt >= 0) and (nums1[lt] >= nums2[rt]):
-                nums1[cr] = nums1[lt]
+            if a >= b:
+                nums1[cr] = a
                 lt -= 1
             else:
-                nums1[cr] = nums2[rt]
+                nums1[cr] = b
                 rt -= 1
