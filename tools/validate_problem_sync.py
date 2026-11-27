@@ -107,7 +107,7 @@ def validate_unique_folder_names():
     names = {
         path.split("/", 1)[0]
         for path in paths
-        if path
+        if path and Path(path.split("/", 1)[0]).is_dir()
     }
 
     errors = []
