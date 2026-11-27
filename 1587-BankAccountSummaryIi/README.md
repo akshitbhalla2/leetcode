@@ -1,6 +1,6 @@
 # 1587. Bank Account Summary II
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/bank-account-summary-ii/)
 
 ---

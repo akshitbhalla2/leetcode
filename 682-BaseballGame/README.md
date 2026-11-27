@@ -1,6 +1,6 @@
 # 682. Baseball Game
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/baseball-game/)
 
 ---

@@ -1,6 +1,6 @@
 # 53. Maximum Subarray
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/maximum-subarray/)
 
 ---

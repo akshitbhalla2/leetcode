@@ -1,6 +1,6 @@
 # 1141. User Activity for the Past 30 Days I
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/user-activity-for-the-past-30-days-i/)
 
 ---

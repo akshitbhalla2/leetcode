@@ -1,6 +1,6 @@
 # 91. Decode Ways
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/decode-ways/)
 
 ---

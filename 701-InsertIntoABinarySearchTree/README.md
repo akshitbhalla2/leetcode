@@ -1,6 +1,6 @@
 # 701. Insert into a Binary Search Tree
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/insert-into-a-binary-search-tree/)
 
 ---

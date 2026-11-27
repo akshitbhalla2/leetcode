@@ -1,6 +1,6 @@
 # 213. House Robber II
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/house-robber-ii/)
 
 ---

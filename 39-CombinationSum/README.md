@@ -1,6 +1,6 @@
 # 39. Combination Sum
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/combination-sum/)
 
 ---

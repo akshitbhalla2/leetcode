@@ -1,6 +1,6 @@
 # 20. Valid Parentheses
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/valid-parentheses/)
 
 ---

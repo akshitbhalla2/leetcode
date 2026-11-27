@@ -1,6 +1,6 @@
 # 73. Set Matrix Zeroes
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/set-matrix-zeroes/)
 
 ---

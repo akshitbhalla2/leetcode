@@ -1,6 +1,6 @@
 # 1472. Design Browser History
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/design-browser-history/)
 
 ---

@@ -1,6 +1,6 @@
 # 1084. Sales Analysis III
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/sales-analysis-iii/)
 
 ---

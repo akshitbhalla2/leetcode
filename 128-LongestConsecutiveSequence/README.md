@@ -1,6 +1,6 @@
 # 128. Longest Consecutive Sequence
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/longest-consecutive-sequence/)
 
 ---

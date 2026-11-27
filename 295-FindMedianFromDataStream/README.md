@@ -1,6 +1,6 @@
 # 295. Find Median from Data Stream
 
-**Difficulty:** Hard  
+**Difficulty:** Hard<br>
 [View on LeetCode](https://leetcode.com/problems/find-median-from-data-stream/)
 
 ---

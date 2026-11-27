@@ -1,6 +1,6 @@
 # 88. Merge Sorted Array
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/merge-sorted-array/)
 
 ---

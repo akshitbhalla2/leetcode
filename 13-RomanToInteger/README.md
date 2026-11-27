@@ -1,6 +1,6 @@
 # 13. Roman to Integer
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/roman-to-integer/)
 
 ---

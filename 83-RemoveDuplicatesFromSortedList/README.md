@@ -1,6 +1,6 @@
 # 83. Remove Duplicates from Sorted List
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
 
 ---

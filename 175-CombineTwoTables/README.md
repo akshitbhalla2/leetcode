@@ -1,6 +1,6 @@
 # 175. Combine Two Tables
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/combine-two-tables/)
 
 ---

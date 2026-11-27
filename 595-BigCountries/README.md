@@ -1,6 +1,6 @@
 # 595. Big Countries
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/big-countries/)
 
 ---

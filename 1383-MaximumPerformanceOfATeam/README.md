@@ -1,6 +1,6 @@
 # 1383. Maximum Performance of a Team
 
-**Difficulty:** Hard  
+**Difficulty:** Hard<br>
 [View on LeetCode](https://leetcode.com/problems/maximum-performance-of-a-team/)
 
 ---

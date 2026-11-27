@@ -1,6 +1,6 @@
 # 191. Number of 1 Bits
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/number-of-1-bits/)
 
 ---

@@ -1,6 +1,6 @@
 # 55. Jump Game
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/jump-game/)
 
 ---

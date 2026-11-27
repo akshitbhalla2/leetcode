@@ -1,6 +1,6 @@
 # 79. Word Search
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/word-search/)
 
 ---

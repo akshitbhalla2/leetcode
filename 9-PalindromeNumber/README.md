@@ -1,6 +1,6 @@
 # 9. Palindrome Number
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/palindrome-number/)
 
 ---

@@ -1,6 +1,6 @@
 # 1393. Capital Gain/Loss
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/capital-gainloss/)
 
 ---

@@ -1,6 +1,6 @@
 # 48. Rotate Image
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/rotate-image/)
 
 ---

@@ -1,6 +1,6 @@
 # 76. Minimum Window Substring
 
-**Difficulty:** Hard  
+**Difficulty:** Hard<br>
 [View on LeetCode](https://leetcode.com/problems/minimum-window-substring/)
 
 ---

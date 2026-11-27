@@ -1,6 +1,6 @@
 # 56. Merge Intervals
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/merge-intervals/)
 
 ---

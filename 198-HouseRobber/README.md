@@ -1,6 +1,6 @@
 # 198. House Robber
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/house-robber/)
 
 ---

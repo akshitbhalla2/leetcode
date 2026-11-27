@@ -1,6 +1,6 @@
 # 183. Customers Who Never Order
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/customers-who-never-order/)
 
 ---

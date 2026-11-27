@@ -1,6 +1,6 @@
 # 5. Longest Palindromic Substring
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/longest-palindromic-substring/)
 
 ---

@@ -1,6 +1,6 @@
 # 145. Binary Tree Postorder Traversal
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 
 ---

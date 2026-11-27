@@ -1,6 +1,6 @@
 # 207. Course Schedule
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/course-schedule/)
 
 ---

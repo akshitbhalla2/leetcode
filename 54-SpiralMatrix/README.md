@@ -1,6 +1,6 @@
 # 54. Spiral Matrix
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/spiral-matrix/)
 
 ---

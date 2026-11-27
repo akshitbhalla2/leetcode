@@ -1,6 +1,6 @@
 # 14. Longest Common Prefix
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/longest-common-prefix/)
 
 ---

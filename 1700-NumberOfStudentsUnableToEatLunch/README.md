@@ -1,6 +1,6 @@
 # 1700. Number of Students Unable to Eat Lunch
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/)
 
 ---

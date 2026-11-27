@@ -1,6 +1,6 @@
 # 49. Group Anagrams
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/group-anagrams/)
 
 ---

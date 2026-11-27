@@ -1,6 +1,6 @@
 # 182. Duplicate Emails
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/duplicate-emails/)
 
 ---

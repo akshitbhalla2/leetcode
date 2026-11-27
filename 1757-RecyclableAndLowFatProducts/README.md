@@ -1,6 +1,6 @@
 # 1757. Recyclable and Low Fat Products
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/recyclable-and-low-fat-products/)
 
 ---

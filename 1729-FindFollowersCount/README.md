@@ -1,6 +1,6 @@
 # 1729. Find Followers Count
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/find-followers-count/)
 
 ---

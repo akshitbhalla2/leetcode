@@ -1,6 +1,6 @@
 # 268. Missing Number
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/missing-number/)
 
 ---

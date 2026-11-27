@@ -1,6 +1,6 @@
 # 152. Maximum Product Subarray
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/maximum-product-subarray/)
 
 ---

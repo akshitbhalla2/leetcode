@@ -1,6 +1,6 @@
 # 118. Pascal's Triangle
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/pascals-triangle/)
 
 ---

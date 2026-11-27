@@ -1,6 +1,6 @@
 # 1158. Market Analysis I
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/market-analysis-i/)
 
 ---

@@ -1,6 +1,6 @@
 # 607. Sales Person
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/sales-person/)
 
 ---

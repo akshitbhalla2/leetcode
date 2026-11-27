@@ -1,6 +1,6 @@
 # 74. Search a 2D Matrix
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/search-a-2d-matrix/)
 
 ---

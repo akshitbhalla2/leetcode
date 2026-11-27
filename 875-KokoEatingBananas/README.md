@@ -1,6 +1,6 @@
 # 875. Koko Eating Bananas
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/koko-eating-bananas/)
 
 ---

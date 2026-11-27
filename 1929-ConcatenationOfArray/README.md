@@ -1,6 +1,6 @@
 # 1929. Concatenation of Array
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/concatenation-of-array/)
 
 ---

@@ -1,6 +1,6 @@
 # 338. Counting Bits
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/counting-bits/)
 
 ---

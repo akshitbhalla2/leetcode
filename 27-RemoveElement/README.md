@@ -1,6 +1,6 @@
 # 27. Remove Element
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/remove-element/)
 
 ---

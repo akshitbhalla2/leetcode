@@ -1,6 +1,6 @@
 # 300. Longest Increasing Subsequence
 
-**Difficulty:** Medium  
+**Difficulty:** Medium<br>
 [View on LeetCode](https://leetcode.com/problems/longest-increasing-subsequence/)
 
 ---

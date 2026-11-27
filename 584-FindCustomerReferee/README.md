@@ -1,6 +1,6 @@
 # 584. Find Customer Referee
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/find-customer-referee/)
 
 ---

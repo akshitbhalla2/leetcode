@@ -1,6 +1,6 @@
 # 125. Valid Palindrome
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/valid-palindrome/)
 
 ---

@@ -1,6 +1,6 @@
 # 1965. Employees With Missing Information
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/employees-with-missing-information/)
 
 ---

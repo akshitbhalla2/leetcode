@@ -1,6 +1,6 @@
 # 168. Excel Sheet Column Title
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/excel-sheet-column-title/)
 
 ---

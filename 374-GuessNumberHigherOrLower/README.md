@@ -1,6 +1,6 @@
 # 374. Guess Number Higher or Lower
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/guess-number-higher-or-lower/)
 
 ---

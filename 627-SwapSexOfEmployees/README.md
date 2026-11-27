@@ -1,6 +1,6 @@
 # 627. Swap Sex of Employees
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/swap-sex-of-employees/)
 
 ---

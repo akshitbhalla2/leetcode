@@ -1,6 +1,6 @@
 # 278. First Bad Version
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/first-bad-version/)
 
 ---

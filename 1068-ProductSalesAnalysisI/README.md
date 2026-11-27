@@ -1,6 +1,6 @@
 # 1068. Product Sales Analysis I
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/product-sales-analysis-i/)
 
 ---

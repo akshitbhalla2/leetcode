@@ -1,6 +1,6 @@
 # 1148. Article Views I
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/article-views-i/)
 
 ---

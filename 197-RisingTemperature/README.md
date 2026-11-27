@@ -1,6 +1,6 @@
 # 197. Rising Temperature
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/rising-temperature/)
 
 ---

@@ -1,6 +1,6 @@
 # 242. Valid Anagram
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/valid-anagram/)
 
 ---

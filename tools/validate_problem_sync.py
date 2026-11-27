@@ -10,9 +10,14 @@ ROOT = Path(__file__).resolve().parents[1]
 PROBLEM_FOLDER = re.compile(r"^(\d+)-(.+)$")
 PLACEHOLDER_FOLDER = re.compile(r"^problem-\d+$", re.IGNORECASE)
 HEADING = re.compile(r"^#\s+(\d+)\.\s+(.+?)\s*$", re.MULTILINE)
+DIFFICULTY = re.compile(
+    r"^\*\*Difficulty:\*\*\s+(Easy|Medium|Hard)(?:<br>)?\s*$",
+    re.IGNORECASE | re.MULTILINE,
+)
 PROBLEM_URL = re.compile(
     r"https?://leetcode\.com/problems/([a-z0-9-]+)/?", re.IGNORECASE
 )
+SECTION_DIVIDER = re.compile(r"^---\s*$", re.MULTILINE)
 UPDATED_AT = re.compile(
     r"Last updated:\s*(\d{1,2}/\d{1,2}/\d{4}),\s*(\d{1,2}:\d{2}:\d{2}\s*[AP]M)",
     re.IGNORECASE,
@@ -45,6 +50,37 @@ def normalized(value):
     return re.sub(r"[^a-z0-9]", "", value.lower())
 
 
+def validate_readme(readme, problem_id, folder_title=None):
+    errors = []
+    content = readme.read_text(encoding="utf-8")
+    label = readme.as_posix()
+    heading = HEADING.search(content)
+
+    if not heading:
+        errors.append(f"{label}: needs a '# <id>. <title>' heading")
+    else:
+        heading_id, heading_title = heading.groups()
+        if heading_id != problem_id:
+            errors.append(f"{label}: heading uses problem {heading_id}, expected {problem_id}")
+        if folder_title and normalized(heading_title) != normalized(folder_title):
+            errors.append(f"{label}: title does not match the problem folder")
+
+    problem_url = PROBLEM_URL.search(content)
+    if not problem_url:
+        errors.append(f"{label}: needs a canonical LeetCode problem link")
+    elif heading:
+        title_slug = re.sub(r"[^a-z0-9\s-]", "", heading.group(2).lower())
+        title_slug = re.sub(r"\s+", "-", title_slug.strip())
+        if title_slug != problem_url.group(1).lower():
+            errors.append(f"{label}: LeetCode link does not match the README title")
+
+    if not DIFFICULTY.search(content):
+        errors.append(f"{label}: needs a '**Difficulty:** <level>' line")
+    if not SECTION_DIVIDER.search(content):
+        errors.append(f"{label}: needs a '---' divider after the metadata")
+    return errors
+
+
 def validate_problem_folder(folder):
     errors = []
     for source in folder.rglob("*.py"):
@@ -64,35 +100,17 @@ def validate_problem_folder(folder):
     problem_id, folder_title = folder_match.groups()
     readme = folder / "README.md"
     if not readme.is_file():
-        return [f"{folder.name}: missing README.md with a problem reference"]
+        errors.append(f"{folder.name}: missing README.md with a problem reference")
 
     errors.extend(validate_latest_solution_is_primary(folder))
-    content = readme.read_text(encoding="utf-8")
-    heading = HEADING.search(content)
-    if not heading:
-        errors.append(f"{folder.name}: README.md needs a '# <id>. <title>' heading")
-    else:
-        heading_id, heading_title = heading.groups()
-        if heading_id != problem_id:
-            errors.append(
-                f"{folder.name}: README heading uses problem {heading_id}, "
-                f"expected {problem_id}"
+    for path in folder.rglob("README.md"):
+        errors.extend(
+            validate_readme(
+                path,
+                problem_id,
+                folder_title if path == readme else None,
             )
-        if normalized(heading_title) != normalized(folder_title):
-            errors.append(
-                f"{folder.name}: README title does not match the folder title"
-            )
-
-    problem_url = PROBLEM_URL.search(content)
-    if not problem_url:
-        errors.append(f"{folder.name}: README.md needs a canonical LeetCode problem link")
-    elif heading:
-        title_slug = re.sub(r"[^a-z0-9\s-]", "", heading.group(2).lower())
-        title_slug = re.sub(r"\s+", "-", title_slug.strip())
-        if title_slug != problem_url.group(1).lower():
-            errors.append(
-                f"{folder.name}: LeetCode link does not match the README problem title"
-            )
+        )
     return errors
 
 
@@ -107,6 +125,12 @@ def solution_timestamp(path):
     filename_timestamp = TIMESTAMPED_FILENAME.search(path.name)
     if filename_timestamp:
         return datetime.strptime(filename_timestamp.group(1), "%Y%m%d_%H%M%S")
+
+    committed_at = git_output(
+        "log", "-1", "--format=%cI", "--", str(path.relative_to(ROOT))
+    ).strip()
+    if committed_at:
+        return datetime.fromisoformat(committed_at).replace(tzinfo=None)
     return None
 
 

@@ -1,6 +1,6 @@
 # 1407. Top Travellers
 
-**Difficulty:** Easy  
+**Difficulty:** Easy<br>
 [View on LeetCode](https://leetcode.com/problems/top-travellers/)
 
 ---
