@@ -1,4 +1,4 @@
-# Last updated: 4/19/2026, 11:23:08 PM
+# Last updated: 11/27/2026, 11:28:09 PM
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -6,33 +6,34 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+    def deleteNode(self, root: TreeNode | None, key: int) -> TreeNode | None:
 
         if not root:
-            return 
+            return None
 
         if key < root.val:
             root.left = self.deleteNode(root.left, key)
-        
+
         elif key > root.val:
             root.right = self.deleteNode(root.right, key)
 
-        else: # Found the node to delete
-            if not root.left: # Only right child or no child
+        else:
+            # 0 or 1 child (leaf nodes): return the other side
+            if not root.left:
                 return root.right
-            if not root.right: # Only left child
-                return root.left    
 
-            # Node must have two children
-            # Find the smallest node in the right subtree (inorder successor).
-            # Replace the current node's value with that of the successor.
-            # Recursively delete the successor.
+            if not root.right:
+                return root.left
 
-            cur = root.right
-            while cur.left:
-                cur = cur.left
-            root.val = cur.val
-            root.right = self.deleteNode(root.right, root.val)
+            # 2 children: replace with inorder successor (min of right subtree)
+            successor = root.right
+            while successor.left:
+                successor = successor.left
+
+            # replace with min of right subtree
+            root.val = successor.val
+            # delete min of right subtree (left node)
+            root.right = self.deleteNode(root.right, successor.val)
 
         return root
 
