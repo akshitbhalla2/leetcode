@@ -114,24 +114,28 @@ def validate_problem_folder(folder):
     return errors
 
 
-def solution_timestamp(path):
+def solution_timestamp(path, include_commit_time=False):
     content = path.read_text(encoding="utf-8")
+    timestamps = []
     updated = UPDATED_AT.search(content)
     if updated:
-        return datetime.strptime(
-            " ".join(updated.groups()), "%m/%d/%Y %I:%M:%S %p"
+        timestamps.append(
+            datetime.strptime(" ".join(updated.groups()), "%m/%d/%Y %I:%M:%S %p")
         )
 
     filename_timestamp = TIMESTAMPED_FILENAME.search(path.name)
     if filename_timestamp:
-        return datetime.strptime(filename_timestamp.group(1), "%Y%m%d_%H%M%S")
+        timestamps.append(
+            datetime.strptime(filename_timestamp.group(1), "%Y%m%d_%H%M%S")
+        )
 
-    committed_at = git_output(
-        "log", "-1", "--format=%cI", "--", str(path.relative_to(ROOT))
-    ).strip()
-    if committed_at:
-        return datetime.fromisoformat(committed_at).replace(tzinfo=None)
-    return None
+    if include_commit_time or not timestamps:
+        committed_at = git_output(
+            "log", "-1", "--format=%cI", "--", str(path.relative_to(ROOT))
+        ).strip()
+        if committed_at:
+            timestamps.append(datetime.fromisoformat(committed_at).replace(tzinfo=None))
+    return max(timestamps) if timestamps else None
 
 
 def validate_latest_solution_is_primary(folder):
@@ -177,7 +181,7 @@ def validate_latest_solution_is_primary(folder):
             continue
 
         latest_timestamp, latest_path = max(dated_archived, key=lambda item: item[0])
-        root_timestamp = solution_timestamp(root_solution)
+        root_timestamp = solution_timestamp(root_solution, include_commit_time=True)
         if root_timestamp is None or latest_timestamp > root_timestamp:
             errors.append(
                 f"{folder.name}: promote newer {latest_path.relative_to(folder)} "
