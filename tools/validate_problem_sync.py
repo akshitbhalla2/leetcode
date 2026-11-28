@@ -1,5 +1,4 @@
 import argparse
-from datetime import datetime
 import re
 import subprocess
 import sys
@@ -18,11 +17,6 @@ PROBLEM_URL = re.compile(
     r"https?://leetcode\.com/problems/([a-z0-9-]+)/?", re.IGNORECASE
 )
 SECTION_DIVIDER = re.compile(r"^---\s*$", re.MULTILINE)
-UPDATED_AT = re.compile(
-    r"Last updated:\s*(\d{1,2}/\d{1,2}/\d{4}),\s*(\d{1,2}:\d{2}:\d{2}\s*[AP]M)",
-    re.IGNORECASE,
-)
-TIMESTAMPED_FILENAME = re.compile(r"_(\d{8}_\d{6})\.[^.]+$")
 NUMBERED_SOURCE_LINE = re.compile(r"^\d+")
 
 
@@ -102,7 +96,14 @@ def validate_problem_folder(folder):
     if not readme.is_file():
         errors.append(f"{folder.name}: missing README.md with a problem reference")
 
-    errors.extend(validate_latest_solution_is_primary(folder))
+    if any(
+        child.is_dir() and child.name.casefold() == "version"
+        for child in folder.iterdir()
+    ):
+        errors.append(
+            f"{folder.name}: use Git history instead of storing solutions in version/"
+        )
+
     for path in folder.rglob("README.md"):
         errors.extend(
             validate_readme(
@@ -111,82 +112,6 @@ def validate_problem_folder(folder):
                 folder_title if path == readme else None,
             )
         )
-    return errors
-
-
-def solution_timestamp(path, include_commit_time=False):
-    content = path.read_text(encoding="utf-8")
-    timestamps = []
-    updated = UPDATED_AT.search(content)
-    if updated:
-        timestamps.append(
-            datetime.strptime(" ".join(updated.groups()), "%m/%d/%Y %I:%M:%S %p")
-        )
-
-    filename_timestamp = TIMESTAMPED_FILENAME.search(path.name)
-    if filename_timestamp:
-        timestamps.append(
-            datetime.strptime(filename_timestamp.group(1), "%Y%m%d_%H%M%S")
-        )
-
-    if include_commit_time or not timestamps:
-        committed_at = git_output(
-            "log", "-1", "--format=%cI", "--", str(path.relative_to(ROOT))
-        ).strip()
-        if committed_at:
-            timestamps.append(datetime.fromisoformat(committed_at).replace(tzinfo=None))
-    return max(timestamps) if timestamps else None
-
-
-def validate_latest_solution_is_primary(folder):
-    version_dir = folder / "version"
-    if not version_dir.is_dir():
-        return []
-
-    errors = []
-    root_solutions = [
-        path
-        for path in folder.iterdir()
-        if path.is_file() and path.suffix.lower() in {".py", ".sql"}
-    ]
-    archived_solutions = [
-        path
-        for path in version_dir.rglob("*")
-        if path.is_file() and path.suffix.lower() in {".py", ".sql"}
-    ]
-    root_extensions = {path.suffix.lower() for path in root_solutions}
-    for extension in sorted(
-        {path.suffix.lower() for path in archived_solutions} - root_extensions
-    ):
-        archived = next(
-            path for path in archived_solutions if path.suffix.lower() == extension
-        )
-        errors.append(
-            f"{folder.name}: missing top-level {extension} solution for "
-            f"archived {archived.relative_to(folder)}"
-        )
-
-    for root_solution in root_solutions:
-        archived = [
-            path
-            for path in archived_solutions
-            if path.suffix.lower() == root_solution.suffix.lower()
-        ]
-        dated_archived = [
-            (solution_timestamp(path), path)
-            for path in archived
-            if solution_timestamp(path) is not None
-        ]
-        if not dated_archived:
-            continue
-
-        latest_timestamp, latest_path = max(dated_archived, key=lambda item: item[0])
-        root_timestamp = solution_timestamp(root_solution, include_commit_time=True)
-        if root_timestamp is None or latest_timestamp > root_timestamp:
-            errors.append(
-                f"{folder.name}: promote newer {latest_path.relative_to(folder)} "
-                f"over {root_solution.name}"
-            )
     return errors
 
 
